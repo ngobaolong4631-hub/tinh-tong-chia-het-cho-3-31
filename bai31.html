@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính tổng số chia hết cho 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            width: 320px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Ứng dụng tính tổng số chia hết cho 3</h2>
+
+    <!-- Form nhập liệu dựa trên gợi ý -->
+    <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+            <label for="numStart">Số đầu:</label>
+            <input type="number" id="numStart" required placeholder="Nhập số bắt đầu...">
+        </div>
+        
+        <div class="form-group">
+            <label for="numEnd">Số cuối:</label>
+            <input type="number" id="numEnd" required placeholder="Nhập số kết thúc...">
+        </div>
+
+        <button type="submit">Submit (Tính tổng)</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        function handleSubmit(event) {
+            // Ngăn chặn form load lại trang mặc định
+            event.preventDefault();
+
+            // Lấy giá trị từ các input dựa vào id
+            const start = parseInt(document.getElementById("numStart").value);
+            const end = parseInt(document.getElementById("numEnd").value);
+
+            let sum = 0;
+
+            // Đảm bảo khoảng từ số nhỏ đến số lớn
+            const min = Math.min(start, end);
+            const max = Math.max(start, end);
+
+            // Vòng lặp tính tổng các số chia hết cho 3
+            for (let i = min; i <= max; i++) {
+                if (i % 3 === 0) {
+                    sum += i;
+                }
+            }
+
+            // In kết quả ra console và hiển thị lên giao diện
+            const message = `Tổng các số chia hết cho 3 từ ${min} đến ${max} là: ${sum}`;
+            console.log(message);
+            document.getElementById("result").innerText = message;
+        }
+    </script>
+
+</body>
+</html>
